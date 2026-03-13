@@ -17,7 +17,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
             }
-            fetch(`${window.location.search}/../${getQueryParam("bot")}.json`).then(response => response.json()).then(
+            fetch(`https://blenderbots12492.github.io/website/src/${getQueryParam("bot")}.json`).then(response => response.json()).then(
                 data => {
                     const name = data.name;
                     const descrition = data.descrition;
