@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title id="bot_name"></title>
+    </head>
+    <body>
+
+        <p id="bot_name"></p>
+
+        <p id="des"></p>
+        <script>
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+            fetch(`/sec/${getQueryParam("bot")}.json`).then(response => response.json()).then(
+                data => {
+                    const name = data.name;
+                    const descrition = data.descrition;
+                    const imageUrl = data.image;
+                    document.querySelector("#bot_name").innerHTML = name;
+                    document.querySelector("#image").src = imageUrl;
+                    document.querySelector("#des").innerHTML = descrition;
+
+                }
+            );
+            </script>
+    </body>
+    </html>
