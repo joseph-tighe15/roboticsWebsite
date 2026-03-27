@@ -2,7 +2,7 @@
   "name": "STRUGIE",
   "heroTitle": "strugie",
   "description": "was our centerstage bot",
-  "image": "website/src/photos/CENTERSTAGE1.png",
+  "image": "/website/src/photos/CENTERSTAGE1.png",
   "variants": ["PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER", "PLACEHOLDER"],
   "stack": [
     { "title": "Drive", "body": "Macanum Drive" },
