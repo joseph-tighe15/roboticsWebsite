@@ -1,5 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html
+    lang="en"
+    style="
+        background-color: #111;
+        /*background-image: linear-gradient(to bottom right, #111, #222, #111);*/
+    "
+>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,10 +19,9 @@
         <link rel="stylesheet" href="bot.css" />
     </head>
     <body>
-        <canvas id="prism"></canvas>
         <div class="page">
             <header class="page-header">
-                <a class="back" href="../website/">&larr; Back</a>
+                <a class="back" href="../index.html">&larr; Back</a>
                 <div class="crumbs">
                     <span class="crumb-label">FTC Robotics</span>
                     <span class="crumb-divider">&bull;</span>
@@ -237,117 +242,8 @@
                     setTimeout(start, Math.max(0, delay || 0));
                 }
 
-                // Prism canvas background
-                const prismCanvas = document.getElementById("prism");
-                const prismCtx = prismCanvas.getContext("2d");
-                let prismW,
-                    prismH,
-                    prismT = 0;
-
-                function resizePrism() {
-                    prismW = prismCanvas.width = window.innerWidth;
-                    prismH = prismCanvas.height = window.innerHeight;
-                }
-                window.addEventListener("resize", resizePrism);
-                resizePrism();
-
-                function drawPrism() {
-                    prismT += 0.01;
-                    const styles = getComputedStyle(document.body);
-                    const tone1 =
-                        styles.getPropertyValue("--bg-tone1").trim() ||
-                        "#00ffc8";
-                    const tone2 =
-                        styles.getPropertyValue("--bg-tone2").trim() ||
-                        "#ffb450";
-                    const tone3 =
-                        styles.getPropertyValue("--bg-tone3").trim() ||
-                        "#008cff";
-                    const base =
-                        styles.getPropertyValue("--bg-base").trim() ||
-                        "#050505";
-
-                    prismCtx.clearRect(0, 0, prismW, prismH);
-                    const grad = prismCtx.createLinearGradient(
-                        0,
-                        0,
-                        prismW,
-                        prismH,
-                    );
-                    grad.addColorStop(0, base);
-                    grad.addColorStop(1, "#050505");
-                    prismCtx.fillStyle = grad;
-                    prismCtx.fillRect(0, 0, prismW, prismH);
-
-                    const gridSize = 120;
-                    prismCtx.lineWidth = 1.25;
-                    prismCtx.globalAlpha = 0.7;
-
-                    const drawLines = (color, fn) => {
-                        prismCtx.strokeStyle = color;
-                        for (
-                            let i = -gridSize;
-                            i < (fn === "v" ? prismW : prismH) + gridSize;
-                            i += gridSize
-                        ) {
-                            const wobble =
-                                fn === "v"
-                                    ? Math.sin(prismT * 0.8 + i * 0.012) * 14
-                                    : Math.cos(prismT * 0.7 + i * 0.014) * 14;
-                            prismCtx.beginPath();
-                            if (fn === "v") {
-                                prismCtx.moveTo(i + wobble, 0);
-                                prismCtx.lineTo(i + wobble, prismH);
-                            } else {
-                                prismCtx.moveTo(0, i + wobble);
-                                prismCtx.lineTo(prismW, i + wobble);
-                            }
-                            prismCtx.stroke();
-                        }
-                    };
-
-                    drawLines(tone1, "v");
-                    drawLines(tone2, "h");
-
-                    prismCtx.globalAlpha = 0.28;
-                    prismCtx.strokeStyle = tone3;
-                    prismCtx.lineWidth = 0.8;
-                    for (
-                        let x = -gridSize / 2;
-                        x < prismW + gridSize;
-                        x += gridSize
-                    ) {
-                        for (
-                            let y = -gridSize / 2;
-                            y < prismH + gridSize;
-                            y += gridSize
-                        ) {
-                            const jitter =
-                                Math.sin(prismT + (x + y) * 0.01) * 6;
-                            prismCtx.strokeRect(
-                                x + jitter,
-                                y - jitter,
-                                gridSize,
-                                gridSize,
-                            );
-                        }
-                    }
-
-                    prismCtx.globalAlpha = 0.5;
-                    prismCtx.fillStyle = tone1;
-                    for (let i = 0; i < 40; i++) {
-                        const px = Math.random() * prismW;
-                        const py = Math.random() * prismH;
-                        prismCtx.fillRect(px, py, 1.8, 1.8);
-                    }
-                    prismCtx.globalAlpha = 1;
-
-                    requestAnimationFrame(drawPrism);
-                }
-                drawPrism();
-
                 const fallbackImage =
-                    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bostontechmom.com%2Fwp-content%2Fuploads%2F2019%2F03%2FFIRST-Logo.gif&f=1&nofb=1&ipt=e29c2bf3ebcb59f304587ffd1453678a4fdf418370db3eafbe72c3c774846990";
+                    "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80&w=1200";
                 const params = new URLSearchParams(window.location.search);
                 const botKey = params.get("bot");
                 const nameEl = document.getElementById("botName");
@@ -477,6 +373,9 @@
                     );
                     renderPlays(features.plays, data.plays || []);
                     renderGallery(features.gallery, data.gallery || []);
+                    renderProfileShadow(
+                        data.background.colors.tone1 || "yellow",
+                    );
                 }
 
                 function handleFailure(err) {
@@ -499,6 +398,12 @@
                     renderStepper(true, fallbackData.stepper);
                     renderPlays(true, []);
                     renderGallery(true, []);
+                }
+
+                function renderProfileShadow(color) {
+                    document.getElementsByClassName(
+                        "bot-layout",
+                    )[0].style.boxShadow = `0 0 10px ${color}`;
                 }
 
                 function setImage(src) {
@@ -823,7 +728,6 @@
                             accent: "#f6e05e",
                             magenta: "#fbbf24",
                         };
-                    body.style.setProperty("--prism-hue", palette.hue);
                     body.style.setProperty("--neon-yellow", palette.primary);
                     body.style.setProperty("--neon-cyan", palette.accent);
                     body.style.setProperty("--neon-magenta", palette.magenta);
