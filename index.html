@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/styles.css">
+    <meta name="description" content="The Blender Bots High School team's web page.">
 </head>
 <body>
 
@@ -34,29 +35,29 @@
         <p>We have been making bots since 2016. Here are some of our recent creations:</p>
 
         <div class="bots">
-            <div class="bot" onclick="window.location = 'src/bot.html?bot=AIM'">
+            <a class="bot" href='src/bot.html?bot=AIM'>
                 <h3 class="botName" data-text="AIM">AIM</h3>
                 <div class="bot-image-placeholder">
                     <img src="src/photos/DECODE1.png" alt="AIM Robot">
                 </div>
-                <p style="margin-top: 4px;"><img class="yearIcon" src="https://ftc-resources.firstinspires.org/uploads/6f38e49e-8cd2-46e2-8885-c872aee20eaa"> DECODE 2025-2026</p>
-            </div>
+                <p style="margin-top: 4px;"><img alt="" class="yearIcon" src="https://ftc-resources.firstinspires.org/uploads/6f38e49e-8cd2-46e2-8885-c872aee20eaa"> DECODE 2025-2026</p>
+            </a>
 
-            <div class="bot" onclick="window.location = 'src/bot.html?bot=BUMBLE_BEE'">
+            <a class="bot" href='src/bot.html?bot=BUMBLE_BEE'>
                 <h3 class="botName" data-text="BUMBLE BEE">BUMBLE BEE</h3>
                 <div class="bot-image-placeholder">
                     <img src="src/photos/INTO_THE_DEEP1.png" alt="Bumble Bee Robot">
                 </div>
-                <p style="margin-top: 4px;"><img src="https://i0.wp.com/firstroboticsbc.org/wp-content/uploads/2024/04/FIRST_DIVE-intothedeep-PatchLogo.webp?resize=476%2C526&ssl=1" class="yearIcon"> INTO THE DEEP 2024-2025</p>
-            </div>
+                <p style="margin-top: 4px;"><img alt="" src="https://i0.wp.com/firstroboticsbc.org/wp-content/uploads/2024/04/FIRST_DIVE-intothedeep-PatchLogo.webp?resize=476%2C526&ssl=1" class="yearIcon"> INTO THE DEEP 2024-2025</p>
+            </a>
 
-            <div class="bot" onclick="window.location = 'src/bot.html?bot=strugie'">
+            <a class="bot" href='src/bot.html?bot=strugie'>
                 <h3 class="botName" data-text="STRUGIE">STRUGIE</h3>
                 <div class="bot-image-placeholder">
                     <img src="src/photos/CENTERSTAGE1.png" alt="strugie">
                 </div>
-                <p style="margin-top: 4px;"><img class="yearIcon" src="https://nmftc.org/wp-content/uploads/2023/07/FIRST_CENTERSTAGE_Logo_Horizontal_RGB_June.png"> CENTER STAGE 2023-2024</p>
-            </div>
+                <p style="margin-top: 4px;"><img alt="" class="yearIcon" src="https://nmftc.org/wp-content/uploads/2023/07/FIRST_CENTERSTAGE_Logo_Horizontal_RGB_June.png"> CENTER STAGE 2023-2024</p>
+            </a>
         </div>
     </section>
     <section class="sponsors">
@@ -108,7 +109,6 @@
     <div style="text-align: center;" class="sponserUs"><div><a href="/src/sponserUs.html">SPONSER US</a></div></div>
     <br/>
     <br/>
-    <script src="src/scripts.js"></script>
     <script>
       const isMobile = navigator.userAgentData?.mobile || /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
       if (isMobile) {
